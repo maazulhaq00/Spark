@@ -1,6 +1,6 @@
 from pyspark.sql import SparkSession
 
-spark = SparkSession.builder.appName("LearningDataframes").getOrCreate()
+spark = SparkSession.builder.appName("SparkSQL").getOrCreate()
 
 df = spark.read.\
     format("csv").\
@@ -13,6 +13,6 @@ df.printSchema()
 
 df.createOrReplaceTempView("insurace")
 
-spark.sql("SELECT * FROM insurace WHERE age<=18 ORDER BY expenses").show()
+spark.sql("SELECT * FROM insurace WHERE age<=18 ORDER BY age").show()
 
 spark.stop()

@@ -2,7 +2,7 @@
 
 from pyspark.sql import SparkSession
 
-spark = SparkSession.builder.appName("LearningDataframes").getOrCreate()
+spark = SparkSession.builder.appName("Spark").getOrCreate()
 
 df = spark.read.\
     format("csv").\
@@ -16,7 +16,7 @@ df.printSchema()
 
 output = df.select(df.age, df.sex, df.children, df.expenses)\
     .where(df.age<25)\
-    .orderBy(-df.expenses)\
+    .orderBy(df.age)\
     .cache()
 
 output.write\
