@@ -14,6 +14,15 @@ df = spark.read.\
 
 df.printSchema()
 
-df.show()
+output = df.select(df.age, df.sex, df.children, df.expenses)\
+    .where(df.age<25)\
+    .orderBy(-df.expenses)\
+    .cache()
+
+output.write\
+    .format("json")\
+    .mode("overwrite")\
+    .option("path", "hdfs:///user/maria_dev/spark/job-output1")\
+    .save()
 
 spark.stop()
