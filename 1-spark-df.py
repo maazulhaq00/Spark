@@ -1,3 +1,4 @@
+# creating dataframe
 import pyspark
 from pyspark.sql import SparkSession
 
@@ -15,4 +16,6 @@ df = spark.createDataFrame(data=studentsData, schema=columns)
 df.printSchema()
 
 df.show()
+
+spark.stop()
 
